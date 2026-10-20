@@ -33,6 +33,7 @@ Kunci rahasia melewati semua aturan RLS, jadi hanya dipakai untuk membaca data p
 ```
 app/
   page.jsx                  katalog (US-01)
+  manifest.js               metadata instalasi PWA (US-13)
   produk/[id]/page.jsx      detail produk (US-02)
   admin/
     login/page.jsx          login (US-04)
@@ -41,6 +42,7 @@ app/
     produk/baru/page.jsx    tambah produk (US-08, bonus)
     produk/[id]/ubah/...    ubah produk (US-09, bonus)
 components/                 komponen tampilan (lihat DESIGN.md)
+  DeskripsiProdukAI.jsx     pembuat deskripsi Gemini (US-14)
 lib/
   toko.js                   identitas toko dan nomor WhatsApp
   data-contoh.js            data contoh sebelum terhubung database
@@ -62,6 +64,14 @@ Format link: `https://wa.me/<nomor>?text=<pesan>`
 
 - `<nomor>` diambil dari `lib/toko.js`, format internasional tanpa tanda + (contoh `6281234567890`).
 - `<pesan>` berisi nama dan harga produk, di-encode dengan `encodeURIComponent`.
+
+## PWA (US-13)
+
+`app/manifest.js` menyediakan web app manifest dan merujuk ikon 192x192 serta 512x512 dari `public/icons`. Deployment harus menggunakan HTTPS agar browser mendukung instalasi ke layar utama.
+
+## Deskripsi produk dengan AI (US-14)
+
+Komponen admin meminta deskripsi melalui Server Action. Server memverifikasi sesi admin dan memanggil Gemini API menggunakan `GEMINI_API_KEY`; kunci tidak dikirim ke browser. Hasilnya mengisi field deskripsi pada form produk dan disimpan bersama produk setelah admin mengirim form.
 
 ## Akun admin
 
