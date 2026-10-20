@@ -87,10 +87,16 @@ Urutan yang disarankan: US-01, US-02, US-03, US-04, US-05, US-06, lalu fitur bon
   - Mengubah password admin untuk meningkatkan keamanan akun.
   - Autentikasi admin menggunakan Supabase Auth.
   - Proteksi halaman admin agar hanya pengguna yang sudah login yang dapat mengaksesnya.
-  - Pengelolaan katalog produk yang menampilkan nama, kategori, deskripsi, dan harga.
+  - Daftar produk admin yang terhubung ke database.
+  - Menambah, mengubah, dan menghapus produk melalui halaman admin.
+  - Filter produk berdasarkan kategori dan pencarian nama.
+  - Memilih jumlah produk sebelum memesan melalui WhatsApp.
   - Pemesanan produk melalui WhatsApp agar pelanggan dapat menghubungi penjual dengan mudah.
   - Tampilan katalog yang responsif dan mudah digunakan.
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
 >>>>>>> c57cbec (us 1 hingga us 6)
+=======
+>>>>>>> 0f8b313 (us 7 hingga 12)
