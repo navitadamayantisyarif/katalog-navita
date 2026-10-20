@@ -74,7 +74,15 @@ Urutan yang disarankan: US-01, US-02, US-03, US-04, US-05, US-06, lalu fitur bon
 
 ## Tentang aplikasi ini
 
-- **Nama usaha:**
-- **Pembuat:**
-- **Link aplikasi:**
+## Tentang aplikasi ini
+
+- **Nama usaha:** Morné Café
+- **Pembuat:** Navita Damayanti Syarif
+- **Link aplikasi:** [Isi dengan URL deployment Vercel]
 - **Fitur bonus yang dikerjakan:**
+  - Mengubah password admin untuk meningkatkan keamanan akun.
+  - Autentikasi admin menggunakan Supabase Auth.
+  - Proteksi halaman admin agar hanya pengguna yang sudah login yang dapat mengaksesnya.
+  - Pengelolaan katalog produk yang menampilkan nama, kategori, deskripsi, dan harga.
+  - Pemesanan produk melalui WhatsApp agar pelanggan dapat menghubungi penjual dengan mudah.
+  - Tampilan katalog yang responsif dan mudah digunakan.
