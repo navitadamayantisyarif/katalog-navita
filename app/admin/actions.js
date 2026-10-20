@@ -32,3 +32,36 @@ export async function keluarAdmin() {
 
   redirect("/admin/login");
 }
+
+export async function gantiPasswordAdmin(formData) {
+  const passwordBaru = formData.get("password_baru");
+  const konfirmasiPassword = formData.get("konfirmasi_password");
+
+  if (typeof passwordBaru !== "string" || typeof konfirmasiPassword !== "string") {
+    redirect("/admin/password?status=input-invalid");
+  }
+
+  if (passwordBaru.length < 8) {
+    redirect("/admin/password?status=password-too-short");
+  }
+
+  if (passwordBaru !== konfirmasiPassword) {
+    redirect("/admin/password?status=password-mismatch");
+  }
+
+  const supabase = await createSupabaseSessionClient();
+  const { data, error: userError } = await supabase.auth.getUser();
+
+  if (userError || !data.user) {
+    redirect("/admin/password?status=session-invalid");
+  }
+
+  const { error } = await supabase.auth.updateUser({ password: passwordBaru });
+
+  if (error) {
+    console.error("Gagal mengganti password admin:", error.message);
+    redirect("/admin/password?status=update-failed");
+  }
+
+  redirect("/admin/password?status=success");
+}

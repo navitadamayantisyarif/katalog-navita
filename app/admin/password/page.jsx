@@ -1,11 +1,30 @@
 import NavAdmin from "@/components/NavAdmin";
 import Input from "@/components/Input";
 import Tombol from "@/components/Tombol";
-import CatatanBelumAktif from "@/components/CatatanBelumAktif";
+import { gantiPasswordAdmin } from "@/app/admin/actions";
 
-// US-05: form ganti password belum berfungsi.
-// Tugas peserta: admin yang sudah login bisa mengganti password-nya, diproses di server.
-export default function HalamanGantiPassword() {
+const pesanStatus = {
+  success: { teks: "Password berhasil diganti.", kelas: "text-utama" },
+  "input-invalid": { teks: "Isi password baru dan konfirmasinya dengan benar.", kelas: "text-bahaya" },
+  "password-too-short": {
+    teks: "Password baru harus terdiri dari minimal 8 karakter.",
+    kelas: "text-bahaya",
+  },
+  "password-mismatch": { teks: "Konfirmasi password tidak sama dengan password baru.", kelas: "text-bahaya" },
+  "session-invalid": {
+    teks: "Sesi admin tidak valid. Silakan masuk kembali.",
+    kelas: "text-bahaya",
+  },
+  "update-failed": {
+    teks: "Password gagal diganti. Silakan coba lagi.",
+    kelas: "text-bahaya",
+  },
+};
+
+export default async function HalamanGantiPassword({ searchParams }) {
+  const { status } = await searchParams;
+  const pesan = pesanStatus[status];
+
   return (
     <div className="flex flex-col gap-6 py-8">
       <NavAdmin />
@@ -15,7 +34,7 @@ export default function HalamanGantiPassword() {
           Ganti password bawaan segera setelah pertama kali masuk. Minimal 8 karakter.
         </p>
       </div>
-      <form className="flex max-w-sm flex-col gap-4">
+      <form action={gantiPasswordAdmin} className="flex max-w-sm flex-col gap-4">
         <Input
           label="Password baru"
           name="password_baru"
@@ -36,7 +55,11 @@ export default function HalamanGantiPassword() {
           Simpan password
         </Tombol>
       </form>
-      <CatatanBelumAktif>Ganti password belum berfungsi: lihat US-05.</CatatanBelumAktif>
+      {pesan && (
+        <p role={status === "success" ? "status" : "alert"} className={`text-sm ${pesan.kelas}`}>
+          {pesan.teks}
+        </p>
+      )}
     </div>
   );
 }
